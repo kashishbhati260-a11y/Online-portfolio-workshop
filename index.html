@@ -1,236 +1,857 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ONLINE PORTFOLIO WORKSHOP | myjob application.com</title>
+    <title>Professional Portfolio Workshop</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-
-<body>
-    <header>
-        <input type="checkbox" name="" id="toggler" aria-label="Toggle navigation menu">
-        <label for="toggler" class="fas fa-bars" aria-label="Menu button"></label>
-        <a href="#" class="logo">job application<span>.</span></a>
-        <nav class="navbar" aria-label="Main navigation">
-            <a href="#home">home</a>
-            <a href="#about-us">about us</a>
-            <a href="#contact">contact us</a>
-            <a href="#skills">skills</a>
-            <a href="#reviews">reviews</a>
-        </nav>
-        <div class="icons">
-             <a href="#" class="fas fa-user" aria-label="User profile"></a>
-        </div>
-    </header>
-
-    <section class="home" id="home">
-        <div class="content">
-            <h1>Portfolio Workshop</h1>
-            <h2>Build Your <span>Professional Portfolio</span></h2>
-            <h2>Create an impressive portfolio to showcase your skills, projects, and achievements.
-                Stand out from the crowd and get noticed!</h2>
-                <!-- Link to about section -->
-             <a href="#home" class="btn">get started</a>
-            
-        </div>
-    </section>
-<!-- About Section -->
-  <section class="about-section">
-    <div class="about-container">
-      <div class="about-text">
-        <h2>Who Am I?</h2>
-        <p>
-          I am a passionate <strong>Web Developer & Designer</strong> with years of experience 
-          crafting digital solutions. My mission is to build clean, responsive, 
-          and visually appealing websites that deliver exceptional user experiences. 
-          I believe in continuous learning and keeping up with the latest tech trends.
-        </p>
-        <ul>
-          <li>✔ Experienced in front-end and back-end development</li>
-          <li>✔ Strong focus on responsive design</li>
-          <li>✔ Passion for problem-solving & innovation</li>
-          <li>✔ Committed to delivering on-time solutions</li>
-        </ul>
-        <!-- Link to Skills section -->
-        <a href="#skills" class="btn">View My Skills</a>
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #4e73df;
+            --secondary-color: #2e59d9;
+            --dark-color: #2c3e50;
+            --light-color: #f8f9fa;
+            --accent-color: #f39c12;
+        }
         
-      </div>
-      <div class="about-image">
-        <img src="client.png.jpg" alt="About Me">
-      </div>
-    </div>
-  </section>
-    <section class="skills-section" id="skills">
-    <h2>My Skills</h2>
-    <div class="skills-container">
-
-      <div class="skill">
-        <div class="skill-title">
-          <span>HTML5</span><span>95%</span>
-        </div>
-        <div class="progress-bar">
-          <div class="progress html"></div>
-        </div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-title">
-          <span>Bootstrap</span><span>90%</span>
-        </div>
-        <div class="progress-bar">
-          <div class="progress bootstrap"></div>
-        </div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-title">
-          <span>CSS3</span><span>80%</span>
-        </div>
-        <div class="progress-bar">
-          <div class="progress css"></div>
-        </div>
-      </div>
-            <div class="skill">
-        <div class="skill-title">
-          <span>JavaScript</span><span>85%</span>
-        </div>
-        <div class="progress-bar">
-          <div class="progress js"></div>
-        </div>
-      </div>
-    </section>
-    <section class="testimonials" id="testimonials">
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Navbar */
+        .navbar {
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar.scrolled {
+            background-color: white !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color) !important;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            z-index: 1;
+            color: white;
+        }
+        
+        .hero-title {
+            font-weight: 700;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.2s forwards;
+            opacity: 0;
+        }
+        
+        .hero-img {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            animation: fadeInRight 1s ease;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Section Styling */
+        .section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            font-weight: 700;
+            margin-bottom: 60px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: var(--primary-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* About Section */
+        .about-img {
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .about-img:hover {
+            transform: scale(1.03);
+        }
+        
+        /* Skills Section */
+        .skills-container {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .skill-item {
+            margin-bottom: 30px;
+        }
+        
+        .skill-name {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .progress {
+            height: 10px;
+            border-radius: 5px;
+            background-color: #e9ecef;
+        }
+        
+        .progress-bar {
+            background-color: var(--primary-color);
+            transition: width 1s ease;
+        }
+        
+        /* Projects Section */
+        .project-card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 30px;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-img {
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-card:hover .project-img {
+            transform: scale(1.05);
+        }
+        
+        .project-badge {
+            background: var(--primary-color);
+        }
+        
+        /* Testimonials */
+        .testimonial-card {
+            border-radius: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            height: 100%;
+            transition: transform 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonial-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+        }
+        
+        /* Contact Section */
+        .contact-form {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-control {
+            height: 50px;
+            margin-bottom: 20px;
+            border: 1px solid #ced4da;
+        }
+        
+        textarea.form-control {
+            height: 150px;
+            resize: none;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 30px 0;
+            position: relative;
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-right: 10px;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section {
+                padding: 70px 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="100">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
-            <h2>What Clients Say</h2>
-            <div class="testimonial-cards">
+            <a class="navbar-brand" href="#">Portfolio<span style="color: var(--accent-color);">Workshop</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-                <div class="testimonial-card">
-                    <img src="client2.png.jpg" alt="Portrait of Sarah Johnson">
-                    <p>"Working with PortfolioWorkshop was a game-changer for our team. They transformed our outdated portfolios into modern, professional showcases that helped us land several high-profile clients."</p>
-                    <h3>Sarah Johnson</h3>
-                    <span>Marketing Director</span>
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h1 class="hero-title">Build Your Professional Portfolio</h1>
+                        <p class="hero-subtitle">Showcase your skills, projects, and experience to land your dream job</p>
+                        <div class="d-flex gap-3">
+                            <a href="#contact" class="btn btn-primary btn-lg px-4">Get Started</a>
+                            <a href="#projects" class="btn btn-outline-light btn-lg px-4">View Projects</a>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="testimonial-card">
-                    <img src="client1.png.jpg" alt="Portrait of Michael Chen">
-                    <p>"As a developer, I wanted a portfolio that highlighted my technical skills while being visually appealing. The result exceeded my expectations and helped me get noticed by top tech companies."</p>
-                    <h3>Michael Chen</h3>
-                    <span>Software Engineer</span>
+                <div class="col-lg-6">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ea6d89e4-c3e8-40c2-ba6d-a0aa539816d0.png" alt="Modern workspace with laptop displaying portfolio website and design tools" class="hero-img img-fluid d-none d-lg-block">
                 </div>
-
-                <div class="testimonial-card">
-                    <img src="client.png.jpg" alt="Portrait of Emily Rodriguez">
-                    <p>"The attention to detail and understanding of design principles made all the difference. My portfolio now accurately represents my skills and style, leading to more client inquiries."</p>
-                    <h3>Emily Rodriguez</h3>
-                    <span>Freelance Designer</span>
-                </div>
-
             </div>
         </div>
     </section>
 
-
-    <section class="contact-section" id="contact">
+    <!-- About Section -->
+    <section id="about" class="section bg-light">
         <div class="container">
-            <h2>Get In Touch</h2>
-            <div class="contact-content">
-
-                <!-- Left: Contact Form -->
-                <div class="contact-form">
-                    <form aria-label="Contact form">
-                        <div class="form-row">
-                            <input type="text" placeholder="Your Name" required aria-label="Your Name">
-                            <input type="email" placeholder="Your Email" required aria-label="Your Email">
-                        </div>
-                        <input type="text" placeholder="Subject" required aria-label="Subject">
-                        <textarea placeholder="Your Message" rows="5" required aria-label="Your Message"></textarea>
-                        <button type="submit">Send Message</button>
-                    </form>
+            <h2 class="text-center section-title">About Me</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-5 mb-5 mb-lg-0">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ac3b8c1d-c396-4137-a565-5bece2cdc0bb.png" alt="Professional headshot of portfolio creator in business casual attire" class="img-fluid about-img">
                 </div>
-
-                <!-- Right: Contact Details -->
-                <div class="contact-details">
-                    <h3>Let's build something amazing together</h3>
-                    <p>Whether you're looking to create a new portfolio or improve your existing one, I'd love to hear about your project. Fill out the form or use the contact details below.</p>
-
-                    <div class="detail">
-                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-                        <div>
-                            <strong>Location</strong>
-                            <p>jaipur</p>
+                <div class="col-lg-7">
+                    <h3 class="mb-3">Crafting Digital Excellence</h3>
+                    <p class="mb-4">With over 5 years of experience in web development and design, I specialize in creating professional portfolios that showcase your unique skills and achievements. My approach focuses on combining aesthetic appeal with functional design to create a lasting impression.</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="me-3">
+                                    <i class="fas fa-check-circle text-primary fa-2x"></i>
+                                </div>
+                                <p class="mb-0">Custom portfolio design tailored to your industry</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="me-3">
+                                    <i class="fas fa-check-circle text-primary fa-2x"></i>
+                                </div>
+                                <p class="mb-0">Mobile-responsive layouts</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="me-3">
+                                    <i class="fas fa-check-circle text-primary fa-2x"></i>
+                                </div>
+                                <p class="mb-0">SEO optimization for better visibility</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="me-3">
+                                    <i class="fas fa-check-circle text-primary fa-2x"></i>
+                                </div>
+                                <p class="mb-0">Fast loading performance</p>
+                            </div>
                         </div>
                     </div>
+                    <a href="#skills" class="btn btn-primary mt-4">View My Skills</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                    <div class="detail">
-                        <i class="fas fa-envelope" aria-hidden="true"></i>
-                        <div>
-                            <strong>Email</strong>
-                            <p>contact@portfolioworkshop.com</p>
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="text-center section-title">My Skills</h2>
+            <div class="skills-container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="skill-item">
+                            <div class="d-flex justify-content-between">
+                                <span class="skill-name">HTML5</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="d-flex justify-content-between">
+                                <span class="skill-name">CSS3</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="d-flex justify-content-between">
+                                <span class="skill-name">JavaScript</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="detail">
-                        <i class="fas fa-phone" aria-hidden="true"></i>
-                        <div>
-                            <strong>Phone</strong>
-                            <p>(555) 123-4567</p>
+                    <div class="col-md-6">
+                        <div class="skill-item">
+                            <div class="d-flex justify-content-between">
+                                <span class="skill-name">Bootstrap</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
                         </div>
-                    </div>
-
-                    <h4>Follow Me</h4>
-                    <div class="social-icons">
-                        <a href="#" aria-label="LinkedIn profile"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" aria-label="GitHub profile"><i class="fab fa-github"></i></a>
-                        <a href="#" aria-label="Twitter profile"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="Dribbble profile"><i class="fab fa-dribbble"></i></a>
+                        <div class="skill-item">
+                            <div class="d-flex justify-content-between">
+                                <span class="skill-name">UI/UX Design</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="d-flex justify-content-between">
+                                <span class="skill-name">Responsive Design</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Projects Section -->
+    <section id="projects" class="section bg-light">
+        <div class="container">
+            <h2 class="text-center section-title">Featured Projects</h2>
+            <div class="text-center mb-5">
+                <div class="btn-group" role="group" aria-label="Project filter">
+                    <button type="button" class="btn btn-outline-primary active filter-btn" data-filter="all">All</button>
+                    <button type="button" class="btn btn-outline-primary filter-btn" data-filter="web">Web</button>
+                    <button type="button" class="btn btn-outline-primary filter-btn" data-filter="design">Design</button>
+                    <button type="button" class="btn btn-outline-primary filter-btn" data-filter="mobile">Mobile</button>
+                </div>
+            </div>
+            
+            <div class="row project-container">
+                <div class="col-lg-4 col-md-6 project-item" data-category="web">
+                    <div class="card project-card h-100">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/95040406-0edb-4f5c-87c9-b7cfd933a02d.png" alt="Corporate website redesign project showing modern interface elements" class="card-img-top project-img">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="badge project-badge text-white">Web Development</span>
+                                <div class="d-flex">
+                                    <a href="#" class="btn btn-sm btn-outline-secondary me-2"><i class="fas fa-eye"></i></a>
+                                    <a href="#" class="btn btn-sm btn-outline-secondary"><i class="fas fa-code"></i></a>
+                                </div>
+                            </div>
+                            <h5 class="card-title">Corporate Portfolio</h5>
+                            <p class="card-text">A professional portfolio website for a tech startup, featuring custom animations and responsive design.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 project-item" data-category="design">
+                    <div class="card project-card h-100">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/36274fda-f0fa-49ca-883c-24adb596a6d5.png" alt="Dashboard UI design with data visualization components and dark theme" class="card-img-top project-img">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="badge bg-success text-white">UI/UX Design</span>
+                                <div class="d-flex">
+                                    <a href="#" class="btn btn-sm btn-outline-secondary me-2"><i class="fas fa-eye"></i></a>
+                                    <a href="#" class="btn btn-sm btn-outline-secondary"><i class="fas fa-code"></i></a>
+                                </div>
+                            </div>
+                            <h5 class="card-title">Dashboard UI Kit</h5>
+                            <p class="card-text">A comprehensive UI kit for analytics dashboards with 50+ reusable components.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 project-item" data-category="mobile">
+                    <div class="card project-card h-100">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8e7ec27c-addb-47ca-a36d-22a16cbb3dff.png" alt="Mobile app screens showing fitness tracking interface with workout stats" class="card-img-top project-img">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="badge bg-info text-white">Mobile App</span>
+                                <div class="d-flex">
+                                    <a href="#" class="btn btn-sm btn-outline-secondary me-2"><i class="fas fa-eye"></i></a>
+                                    <a href="#" class="btn btn-sm btn-outline-secondary"><i class="fas fa-code"></i></a>
+                                </div>
+                            </div>
+                            <h5 class="card-title">Fitness Tracker</h5>
+                            <p class="card-text">A cross-platform mobile application for tracking workouts and nutrition with social features.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 project-item" data-category="web">
+                    <div class="card project-card h-100">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/70f51fbb-57b6-40a7-811b-2b2ccb31b58f.png" alt="E-commerce product page with clean layout and high-quality product images" class="card-img-top project-img">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="badge project-badge text-white">Web Development</span>
+                                <div class="d-flex">
+                                    <a href="#" class="btn btn-sm btn-outline-secondary me-2"><i class="fas fa-eye"></i></a>
+                                    <a href="#" class="btn btn-sm btn-outline-secondary"><i class="fas fa-code"></i></a>
+                                </div>
+                            </div>
+                            <h5 class="card-title">E-Commerce Store</h5>
+                            <p class="card-text">A fully responsive online store with shopping cart functionality and secure payment integration.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 project-item" data-category="design">
+                    <div class="card project-card h-100">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a18268bc-68ac-4f71-ad7c-49e015cb0c72.png" alt="Brand identity package including logo variations and color palette" class="card-img-top project-img">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="badge bg-success text-white">UI/UX Design</span>
+                                <div class="d-flex">
+                                    <a href="#" class="btn btn-sm btn-outline-secondary me-2"><i class="fas fa-eye"></i></a>
+                                    <a href="#" class="btn btn-sm btn-outline-secondary"><i class="fas fa-code"></i></a>
+                                </div>
+                            </div>
+                            <h5 class="card-title">Brand Identity</h5>
+                            <p class="card-text">Complete brand identity package including logo, color scheme, typography, and style guide.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 project-item" data-category="web">
+                    <div class="card project-card h-100">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9e3a651c-6b74-4812-8a95-986200c6fc92.png" alt="Blog platform with featured articles and category navigation" class="card-img-top project-img">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="badge project-badge text-white">Web Development</span>
+                                <div class="d-flex">
+                                    <a href="#" class="btn btn-sm btn-outline-secondary me-2"><i class="fas fa-eye"></i></a>
+                                    <a href="#" class="btn btn-sm btn-outline-secondary"><i class="fas fa-code"></i></a>
+                                </div>
+                            </div>
+                            <h5 class="card-title">Content Management System</h5>
+                            <p class="card-text">A custom CMS for bloggers with WYSIWYG editor, SEO tools, and analytics dashboard.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section">
+        <div class="container">
+            <h2 class="text-center section-title">What Clients Say</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="testimonial-card">
+                        <div class="text-center mb-4">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b555089e-0549-4296-af3f-e159aaced721.png" alt="Portrait of satisfied client Sarah Johnson, marketing director" class="testimonial-img">
+                        </div>
+                        <p class="mb-4">"Working with PortfolioWorkshop was a game-changer for our team. They transformed our outdated portfolios into modern, professional showcases that helped us land several high-profile clients."</p>
+                        <div class="text-center">
+                            <h5>Sarah Johnson</h5>
+                            <p class="text-muted">Marketing Director</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="testimonial-card">
+                        <div class="text-center mb-4">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b6baf7a1-05d2-4eba-b359-ab420e1a5681.png" alt="Portrait of happy customer Michael Chen, software engineer" class="testimonial-img">
+                        </div>
+                        <p class="mb-4">"As a developer, I wanted a portfolio that highlighted my technical skills while being visually appealing. The result exceeded my expectations and helped me get noticed by top tech companies."</p>
+                        <div class="text-center">
+                            <h5>Michael Chen</h5>
+                            <p class="text-muted">Software Engineer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="testimonial-card">
+                        <div class="text-center mb-4">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/42527aa9-19f8-4e66-9d65-7eba9518a308.png" alt="Portrait of pleased client Emily Rodriguez, freelance designer" class="testimonial-img">
+                        </div>
+                        <p class="mb-4">"The attention to detail and understanding of design principles made all the difference. My portfolio now accurately represents my skills and style, leading to more client inquiries."</p>
+                        <div class="text-center">
+                            <h5>Emily Rodriguez</h5>
+                            <p class="text-muted">Freelance Designer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section bg-light">
+        <div class="container">
+            <h2 class="text-center section-title">Get In Touch</h2>
+            <div class="row">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="contact-form">
+                        <form id="portfolioForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="Your Name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" placeholder="Your Email" required>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Subject">
+                            <textarea class="form-control" placeholder="Your Message" required></textarea>
+                            <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="ps-lg-4">
+                        <h4 class="mb-4">Let's build something amazing together</h4>
+                        <p class="mb-5">Whether you're looking to create a new portfolio or improve your existing one, I'd love to hear about your project. Fill out the form or use the contact details below.</p>
+                        <div class="d-flex align-items-start mb-4">
+                            <div class="me-3">
+                                <i class="fas fa-map-marker-alt text-primary fa-2x"></i>
+                            </div>
+                            <div>
+                                <h5>Location</h5>
+                                <p class="mb-0">San Francisco, CA</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start mb-4">
+                            <div class="me-3">
+                                <i class="fas fa-envelope text-primary fa-2x"></i>
+                            </div>
+                            <div>
+                                <h5>Email</h5>
+                                <p class="mb-0">contact@portfolioworkshop.com</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start mb-4">
+                            <div class="me-3">
+                                <i class="fas fa-phone-alt text-primary fa-2x"></i>
+                            </div>
+                            <div>
+                                <h5>Phone</h5>
+                                <p class="mb-0">(555) 123-4567</p>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <h5 class="mb-3">Follow Me</h5>
+                            <div class="d-flex">
+                                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-dribbble"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer class="footer">
-        <div class="container footer-content">
-
-            <!-- Left: Brand -->
-            <div class="footer-section">
-                <h3>PortfolioWorkshop</h3>
-                <p>Empowering professionals to showcase their skills and land their dream jobs through exceptional portfolio design.</p>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-3 mb-lg-0">
+                    <h4 class="mb-3">PortfolioWorkshop</h4>
+                    <p>Empowering professionals to showcase their skills and land their dream jobs through exceptional portfolio design.</p>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-3 mb-md-0">
+                    <h5 class="mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#home" class="text-white text-decoration-none">Home</a></li>
+                        <li class="mb-2"><a href="#about" class="text-white text-decoration-none">About</a></li>
+                        <li class="mb-2"><a href="#projects" class="text-white text-decoration-none">Projects</a></li>
+                        <li class="mb-2"><a href="#contact" class="text-white text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-3">Legal</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Terms of Service</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Cookie Policy</a></li>
+                    </ul>
+                </div>
             </div>
-
-            <!-- Middle: Quick Links -->
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about-us">About</a></li> <!-- Corrected link to match id -->
-                    <li><a href="#skills">skills</a></li> <!-- Placeholder for skills section -->
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+            <hr class="my-4 bg-light">
+            <div class="text-center">
+                <p class="mb-0">© 2023 PortfolioWorkshop. All rights reserved.</p>
             </div>
-
-            <!-- Right: Legal -->
-            <div class="footer-section">
-                <h4>Legal</h4>
-                <ul>
-                    <li><a href="privacy.html">Privacy Policy</a></li>
-                    <li><a href="terms.html">Terms of Service</a></li>
-                    <li><a href="cookies.html">Cookie Policy</a></li>
-                </ul>
-            </div>
-
-        </div>
-
-        <!-- Bottom line -->
-        <div class="footer-bottom">
-            <p>© 2023 PortfolioWorkshop. All rights reserved.</p>
         </div>
     </footer>
 
-</body>
+    <!-- Back to Top Button -->
+    <a href="#" class="btn btn-primary btn-lg back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
 
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Back to top button
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTop.style.display = 'block';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+        
+        backToTop.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        });
+        
+        // Project filtering
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const projectItems = document.querySelectorAll('.project-item');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    projectItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Form submission
+            const portfolioForm = document.getElementById('portfolioForm');
+            if (portfolioForm) {
+                portfolioForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for your message! We will get back to you soon.');
+                    this.reset();
+                });
+            }
+            
+            // Animate progress bars when they come into view
+            const animateProgressBars = function() {
+                const progressBars = document.querySelectorAll('.progress-bar');
+                
+                progressBars.forEach(bar => {
+                    const width = bar.getAttribute('aria-valuenow');
+                    bar.style.width = '0';
+                    
+                    setTimeout(() => {
+                        bar.style.width = width + '%';
+                    }, 100);
+                });
+            };
+            
+            // Intersection Observer for progress bars
+            const progressBarsSection = document.querySelector('#skills');
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateProgressBars();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {threshold: 0.5});
+            
+            if (progressBarsSection) {
+                observer.observe(progressBarsSection);
+            }
+        });
+    </script>
+</body>
 </html>
 
